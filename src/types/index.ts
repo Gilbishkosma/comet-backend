@@ -11,9 +11,12 @@ export interface ApiResponse<T> {
 }
 
 export interface ErrorResponse {
-  error: string;
-  status: number;
-  message: string;
+  error: {
+    message: string;
+    devMessage: string;
+    source: string;
+    code: string;
+  };
 }
 
 export interface User {
@@ -41,4 +44,4 @@ export interface Chat {
   lastMessage?: Message;
   createdAt: string;
   updatedAt: string;
-} 
+}

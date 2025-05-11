@@ -1,4 +1,8 @@
-import type { CometConfig, ApiResponse } from '../types/index.js';
+import type {
+  CometConfig,
+  ApiResponse,
+  ErrorResponse,
+} from '../types/index.js';
 
 export class BaseApiClient {
   protected baseUrl: string;
@@ -26,9 +30,12 @@ export class BaseApiClient {
         headers,
       });
 
-      const data = await response.json();
+      const data = (await response.json()) as ErrorResponse | T;
       if (!response.ok) {
-        throw new Error((data as any).message || 'An error occurred');
+        const error = (data as ErrorResponse).error;
+        throw new Error(
+          error?.message || error?.devMessage || 'An error occurred'
+        );
       }
 
       return {

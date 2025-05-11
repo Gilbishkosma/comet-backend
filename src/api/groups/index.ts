@@ -1,5 +1,5 @@
-import { BaseApiClient } from '../base';
-import { ApiResponse } from '../../types';
+import { BaseApiClient } from '../base.js';
+import type { ApiResponse } from '../../types/index.js';
 
 export interface Group {
   id: string;
@@ -43,14 +43,20 @@ export class GroupsApi extends BaseApiClient {
     });
   }
 
-  async addMembers(groupId: string, members: string[]): Promise<ApiResponse<Group>> {
+  async addMembers(
+    groupId: string,
+    members: string[]
+  ): Promise<ApiResponse<Group>> {
     return this.request<Group>(`/groups/${groupId}/members`, {
       method: 'POST',
       body: JSON.stringify({ members }),
     });
   }
 
-  async removeMembers(groupId: string, members: string[]): Promise<ApiResponse<Group>> {
+  async removeMembers(
+    groupId: string,
+    members: string[]
+  ): Promise<ApiResponse<Group>> {
     return this.request<Group>(`/groups/${groupId}/members`, {
       method: 'DELETE',
       body: JSON.stringify({ members }),
@@ -67,4 +73,4 @@ export class GroupsApi extends BaseApiClient {
 
     return this.request<Group[]>(`/groups?${queryParams.toString()}`);
   }
-} 
+}

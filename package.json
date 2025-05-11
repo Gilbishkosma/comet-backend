@@ -1,10 +1,17 @@
 {
   "name": "comet-backend",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "TypeScript SDK for Comet Chat Backend APIs",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "files": [
     "dist",
     "README.md",

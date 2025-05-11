@@ -1,8 +1,10 @@
-import { BaseApiClient } from '../base';
-import { Message, ApiResponse } from '../../types';
+import { BaseApiClient } from '../base.js';
+import type { Message, ApiResponse } from '../../types/index.js';
 
 export class MessagesApi extends BaseApiClient {
-  async sendMessage(messageData: Partial<Message>): Promise<ApiResponse<Message>> {
+  async sendMessage(
+    messageData: Partial<Message>
+  ): Promise<ApiResponse<Message>> {
     return this.request<Message>('/messages', {
       method: 'POST',
       body: JSON.stringify(messageData),
@@ -30,10 +32,13 @@ export class MessagesApi extends BaseApiClient {
     });
   }
 
-  async editMessage(messageId: string, content: string): Promise<ApiResponse<Message>> {
+  async editMessage(
+    messageId: string,
+    content: string
+  ): Promise<ApiResponse<Message>> {
     return this.request<Message>(`/messages/${messageId}`, {
       method: 'PUT',
       body: JSON.stringify({ content }),
     });
   }
-} 
+}

@@ -1,7 +1,7 @@
-import { CometConfig } from './types';
-import { UsersApi } from './api/users';
-import { MessagesApi } from './api/messages';
-import { GroupsApi } from './api/groups';
+import type { CometConfig } from './types/index.js';
+import { UsersApi } from './api/users/index.js';
+import { MessagesApi } from './api/messages/index.js';
+import { GroupsApi } from './api/groups/index.js';
 
 export class CometBackend {
   public users: UsersApi;
@@ -15,5 +15,5 @@ export class CometBackend {
   }
 }
 
-export * from './types';
-export * from './api/groups'; 
+// Export types
+export * from './types/index.js';

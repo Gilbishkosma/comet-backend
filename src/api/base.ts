@@ -20,7 +20,7 @@ export class BaseApiClient {
     const url = `${this.baseUrl}${endpoint}`;
     const headers = {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${this.apiKey}`,
+      apikey: this.apiKey,
       ...options.headers,
     };
 
@@ -32,7 +32,7 @@ export class BaseApiClient {
 
       const data = (await response.json()) as ErrorResponse | T;
       if (!response.ok) {
-        const error = (data as ErrorResponse).error;
+        const error = (data as ErrorResponse)?.error;
         throw new Error(
           error?.message || error?.devMessage || 'An error occurred'
         );

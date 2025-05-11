@@ -45,3 +45,12 @@ export interface Chat {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface Group {
+  id: string;
+  name: string;
+  type: 'public' | 'private' | 'password';
+  members: string[];
+  createdAt: string;
+  updatedAt: string;
+}

@@ -1,14 +1,5 @@
 import { BaseApiClient } from '../base.js';
-import type { ApiResponse } from '../../types/index.js';
-
-export interface Group {
-  id: string;
-  name: string;
-  type: 'public' | 'private' | 'password';
-  members: string[];
-  createdAt: string;
-  updatedAt: string;
-}
+import type { ApiResponse, Group } from '../../types/index.js';
 
 export class GroupsApi extends BaseApiClient {
   async createGroup(groupData: {

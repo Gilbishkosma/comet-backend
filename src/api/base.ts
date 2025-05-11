@@ -31,19 +31,11 @@ export class BaseApiClient {
         headers,
       });
 
-      const responseData = (await response.json()) as
-        | ErrorResponse
-        | CometApiResponse<T>;
-      if (!response.ok) {
-        const error = (responseData as ErrorResponse)?.error;
-        throw new Error(
-          error?.message || error?.devMessage || 'An error occurred'
-        );
-      }
-
+      const responseData = await response.json();\
       return {
-        data: (responseData as CometApiResponse<T>).data,
-        meta: (responseData as CometApiResponse<T>).meta,
+        data: (responseData as CometApiResponse<T>)?.data,
+        meta: (responseData as CometApiResponse<T>)?.meta,
+        error: (responseData as CometApiResponse<T>)?.error,
         status: response.status,
       };
     } catch (error) {

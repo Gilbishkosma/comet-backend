@@ -1,6 +1,6 @@
-# Comet Backend SDK
+# Comet Chat Backend SDK
 
-A TypeScript SDK for interacting with the Comet Chat Backend APIs.
+A TypeScript SDK for interacting with Comet Chat Backend APIs.
 
 ## Installation
 
@@ -10,53 +10,59 @@ npm install comet-backend
 
 ## Usage
 
-You can import the SDK in two ways:
-
 ```typescript
-// Using named import
 import { CometBackend } from 'comet-backend';
 
-// OR using default import
-import CometBackend from 'comet-backend';
-
-// Initialize the SDK
 const comet = new CometBackend({
-  appId: 'your-app-id',
-  region: 'us', // or 'eu', 'in', etc.
-  apiKey: 'your-api-key',
+  appId: 'YOUR_APP_ID',
+  region: 'YOUR_REGION',
+  apiKey: 'YOUR_API_KEY'
 });
 
-// User operations
-const user = await comet.users.createUser({
-  name: 'John Doe',
-  email: 'john@example.com',
+// Create a user
+const response = await comet.users.createUser({
+  uid: 'user123',
+  name: 'John Doe'
 });
 
-// Message operations
-const message = await comet.messages.sendMessage({
-  senderId: 'user1',
-  receiverId: 'user2',
-  content: 'Hello!',
-  type: 'text',
-});
-
-// Group operations
-const group = await comet.groups.createGroup({
-  name: 'My Group',
-  type: 'public',
-  members: ['user1', 'user2'],
-});
+// Response structure
+{
+  data: T[];           // Array of data items
+  meta?: {            // Optional metadata
+    [key: string]: unknown;
+  };
+  error?: {           // Optional error information
+    message: string;
+    devMessage: string;
+    source: string;
+    code: string;
+  };
+  status: number;     // HTTP status code
+}
 ```
 
 ## Features
 
-- TypeScript support with full type definitions
-- Modular API structure
-- User management
-- Message handling
-- Group management
-- Error handling
-- Promise-based API
+- User Management
+
+  - Create users
+  - Get user details
+  - Update users
+  - Delete users
+  - List users
+
+- Message Management
+
+  - Send messages
+  - Get message history
+  - Delete messages
+
+- Group Management
+  - Create groups
+  - Get group details
+  - Update groups
+  - Delete groups
+  - List groups
 
 ## API Reference
 
@@ -64,72 +70,74 @@ const group = await comet.groups.createGroup({
 
 ```typescript
 // Create a user
-comet.users.createUser(userData);
+comet.users.createUser({
+  uid: string;
+  name: string;
+  avatar?: string;
+  role?: string;
+  statusMessage?: string;
+  metadata?: Record<string, unknown>;
+  tags?: string[];
+  withAuthToken?: boolean;
+});
 
-// Get a user
-comet.users.getUser(userId);
+// Get user details
+comet.users.getUser(userId: string);
 
-// Update a user
-comet.users.updateUser(userId, userData);
+// Update user
+comet.users.updateUser(userId: string, userData: Partial<User>);
 
-// Delete a user
-comet.users.deleteUser(userId);
+// Delete user
+comet.users.deleteUser(userId: string);
 
 // List users
-comet.users.getUsers({ limit: 10, page: 1 });
+comet.users.getUsers(params?: {
+  limit?: number;
+  page?: number;
+});
 ```
 
 ### Messages API
 
 ```typescript
 // Send a message
-comet.messages.sendMessage(messageData);
+comet.messages.sendMessage({
+  receiverId: string;
+  content: string;
+  type: 'text' | 'image' | 'file';
+});
 
-// Get messages
-comet.messages.getMessages({ chatId: 'chat1', limit: 20 });
-
-// Delete a message
-comet.messages.deleteMessage(messageId);
-
-// Edit a message
-comet.messages.editMessage(messageId, newContent);
+// Get message history
+comet.messages.getMessages(params?: {
+  limit?: number;
+  page?: number;
+});
 ```
 
 ### Groups API
 
 ```typescript
 // Create a group
-comet.groups.createGroup(groupData);
+comet.groups.createGroup({
+  name: string;
+  type: 'public' | 'private' | 'password';
+  members: string[];
+});
 
-// Get a group
-comet.groups.getGroup(groupId);
+// Get group details
+comet.groups.getGroup(groupId: string);
 
-// Update a group
-comet.groups.updateGroup(groupId, groupData);
+// Update group
+comet.groups.updateGroup(groupId: string, groupData: Partial<Group>);
 
-// Delete a group
-comet.groups.deleteGroup(groupId);
-
-// Add members to a group
-comet.groups.addMembers(groupId, ['user1', 'user2']);
-
-// Remove members from a group
-comet.groups.removeMembers(groupId, ['user1']);
+// Delete group
+comet.groups.deleteGroup(groupId: string);
 
 // List groups
-comet.groups.getGroups({ limit: 10, page: 1 });
-```
-
-## Error Handling
-
-The SDK throws errors when API requests fail. You can catch these errors using try-catch blocks:
-
-```typescript
-try {
-  const user = await comet.users.createUser(userData);
-} catch (error) {
-  console.error('Failed to create user:', error.message);
-}
+comet.groups.getGroups(params?: {
+  limit?: number;
+  page?: number;
+});
 ```
 
 ## License

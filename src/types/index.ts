@@ -14,6 +14,7 @@ export interface ApiResponse<T> {
 export interface CometApiResponse<T> {
   data: T[];
   meta: Record<string, unknown>;
+  error?: ErrorResponse;
 }
 
 export interface ErrorResponse {

@@ -5,9 +5,15 @@ export interface CometConfig {
 }
 
 export interface ApiResponse<T> {
-  data: T;
+  data: T[];
+  meta?: Record<string, unknown>;
+  error?: ErrorResponse | undefined;
   status: number;
-  message?: string;
+}
+
+export interface CometApiResponse<T> {
+  data: T[];
+  meta: Record<string, unknown>;
 }
 
 export interface ErrorResponse {
@@ -20,12 +26,14 @@ export interface ErrorResponse {
 }
 
 export interface User {
-  id: string;
+  uid: string;
   name: string;
-  email: string;
   avatar?: string;
-  status?: 'online' | 'offline';
-  lastActive?: string;
+  role?: string;
+  statusMessage?: string;
+  metadata?: Record<string, unknown>;
+  tags?: string[];
+  withAuthToken?: Boolean;
 }
 
 export interface Message {

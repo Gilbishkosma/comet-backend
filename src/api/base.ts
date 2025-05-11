@@ -2,6 +2,7 @@ import type {
   CometConfig,
   ApiResponse,
   ErrorResponse,
+  CometApiResponse,
 } from '../types/index.js';
 
 export class BaseApiClient {
@@ -30,16 +31,19 @@ export class BaseApiClient {
         headers,
       });
 
-      const data = (await response.json()) as ErrorResponse | T;
+      const responseData = (await response.json()) as
+        | ErrorResponse
+        | CometApiResponse<T>;
       if (!response.ok) {
-        const error = (data as ErrorResponse)?.error;
+        const error = (responseData as ErrorResponse)?.error;
         throw new Error(
           error?.message || error?.devMessage || 'An error occurred'
         );
       }
 
       return {
-        data: data as T,
+        data: (responseData as CometApiResponse<T>).data,
+        meta: (responseData as CometApiResponse<T>).meta,
         status: response.status,
       };
     } catch (error) {

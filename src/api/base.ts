@@ -31,7 +31,7 @@ export class BaseApiClient {
         headers,
       });
 
-      const responseData = await response.json();\
+      const responseData = await response.json();
       return {
         data: (responseData as CometApiResponse<T>)?.data,
         meta: (responseData as CometApiResponse<T>)?.meta,

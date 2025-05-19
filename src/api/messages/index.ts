@@ -26,19 +26,23 @@ export class MessagesApi extends BaseApiClient {
     return this.request<Message[]>(`/messages?${queryParams.toString()}`);
   }
 
-  async deleteMessage(messageId: string): Promise<ApiResponse<void>> {
+  async deleteMessage(
+    messageId: string,
+    permanent: boolean = false
+  ): Promise<ApiResponse<void>> {
     return this.request<void>(`/messages/${messageId}`, {
       method: 'DELETE',
+      body: JSON.stringify({ permanent }),
     });
   }
 
   async editMessage(
     messageId: string,
-    content: string
+    text: string
   ): Promise<ApiResponse<Message>> {
     return this.request<Message>(`/messages/${messageId}`, {
       method: 'PUT',
-      body: JSON.stringify({ content }),
+      body: JSON.stringify({ text }),
     });
   }
 }

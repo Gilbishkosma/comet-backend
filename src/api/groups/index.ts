@@ -3,6 +3,7 @@ import type { ApiResponse, Group } from '../../types/index.js';
 
 export class GroupsApi extends BaseApiClient {
   async createGroup(groupData: {
+    guid: string;
     name: string;
     type: Group['type'];
     members?: string[];

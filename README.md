@@ -1,6 +1,12 @@
 # Comet Chat Backend SDK
 
-A TypeScript SDK for interacting with Comet Chat Backend APIs.
+```
+    🔰 I am working on this library, not all the methods are available right now as WIP.
+    Feel free to create an issue, i will add a method on the same day if its urgent.
+    Thanks. 🔰
+```
+
+A TypeScript SDK for interacting with [Comet Chat](https://www.cometchat.com/)'s backend APIs.
 
 ## Installation
 

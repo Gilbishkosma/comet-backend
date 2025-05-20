@@ -6,7 +6,7 @@ import type {
 } from '../../types/index.js';
 
 export class NotificationsApi extends BaseApiClient {
-  async updateAppNotificationSettings(
+  async updateAppSettings(
     settings: AppNotificationSettings
   ): Promise<ApiResponse<AppNotificationSettings>> {
     return this.request<AppNotificationSettings>('/notifications/v1/settings', {
@@ -15,7 +15,7 @@ export class NotificationsApi extends BaseApiClient {
     });
   }
 
-  async updateUserNotificationSettings(
+  async updateUserPreferences(
     userId: string,
     settings: UserNotificationSettings
   ): Promise<ApiResponse<UserNotificationSettings>> {

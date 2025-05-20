@@ -63,3 +63,16 @@ export interface Group {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface NotificationSettings {
+  preferences?: {
+    bypassPreferencesForMentions?: boolean;
+    group?: Record<string, any>;
+    oneOnOne?: Record<string, any>;
+    mute?: Record<string, any>;
+    email?: Record<string, any>;
+    sms?: Record<string, any>;
+  };
+  sound?: Record<string, any>;
+  templates?: Record<string, any>;
+}

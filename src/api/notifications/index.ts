@@ -1,18 +1,5 @@
 import { BaseApiClient } from '../base.js';
-import type { ApiResponse } from '../../types/index.js';
-
-export interface NotificationSettings {
-  preferences?: {
-    bypassPreferencesForMentions?: boolean;
-    group?: Record<string, any>;
-    oneOnOne?: Record<string, any>;
-    mute?: Record<string, any>;
-    email?: Record<string, any>;
-    sms?: Record<string, any>;
-  };
-  sound?: Record<string, any>;
-  templates?: Record<string, any>;
-}
+import type { ApiResponse, NotificationSettings } from '../../types/index.js';
 
 export class NotificationsApi extends BaseApiClient {
   async updateNotificationSettings(

@@ -64,7 +64,7 @@ export interface Group {
   updatedAt: string;
 }
 
-export interface NotificationSettings {
+export interface AppNotificationSettings {
   preferences?: {
     bypassPreferencesForMentions?: boolean;
     group?: Record<string, any>;
@@ -75,4 +75,35 @@ export interface NotificationSettings {
   };
   sound?: Record<string, any>;
   templates?: Record<string, any>;
+}
+
+export interface OneOnOnePreferences {
+  oneOnOneMessages?: 1 | 2 | 3;
+  oneOnOneReplies?: 1 | 2 | 3;
+  oneOnOneReactions?: 1 | 2 | 3;
+}
+
+export interface MutePreferences {
+  dnd?: 1 | 2;
+}
+
+export interface GroupPreferences {
+  groupMessages?: 1 | 2 | 3;
+  groupReplies?: 1 | 2 | 3;
+  groupReactions?: 1 | 2 | 3;
+  groupMemberLeft?: 1 | 2;
+  groupMemberAdded?: 1 | 2;
+  groupMemberJoined?: 1 | 2;
+  groupMemberKicked?: 1 | 2;
+  groupMemberBanned?: 1 | 2;
+  groupMemberUnbanned?: 1 | 2;
+  groupMemberScopeChanged?: 1 | 2;
+}
+
+export interface UserNotificationSettings {
+  groupPreferences?: GroupPreferences;
+  oneOnOnePreferences?: OneOnOnePreferences;
+  mutePreferences?: MutePreferences;
+  schedule?: Record<string, any>;
+  usePrivacyTemplate?: boolean;
 }

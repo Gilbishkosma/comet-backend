@@ -39,4 +39,28 @@ export class UsersApi extends BaseApiClient {
 
     return this.request<User[]>(`/users?${queryParams.toString()}`);
   }
+
+  async blockUser(
+    userId: string,
+    blockedUids: string[]
+  ): Promise<ApiResponse<void>> {
+    return this.request<void>(`/users/${userId}/blockedusers`, {
+      method: 'POST',
+      body: JSON.stringify({ blockedUids }),
+    });
+  }
+
+  async unblockUser(
+    userId: string,
+    blockedUids: string[]
+  ): Promise<ApiResponse<void>> {
+    return this.request<void>(`/users/${userId}/blockedusers`, {
+      method: 'DELETE',
+      body: JSON.stringify({ blockedUids }),
+    });
+  }
+
+  async listBlockedUsers(userId: string): Promise<ApiResponse<User[]>> {
+    return this.request<User[]>(`/users/${userId}/blockedusers`);
+  }
 }

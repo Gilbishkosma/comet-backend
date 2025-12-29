@@ -1,6 +1,6 @@
 {
   "name": "comet-backend",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "TypeScript SDK for Comet Chat Backend APIs",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

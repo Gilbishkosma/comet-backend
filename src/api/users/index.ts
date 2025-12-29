@@ -1,10 +1,10 @@
-import { BaseApiClient } from '../base.js';
-import type { User, ApiResponse } from '../../types/index.js';
+import { BaseApiClient } from "../base.js";
+import type { User, ApiResponse } from "../../types/index.js";
 
 export class UsersApi extends BaseApiClient {
   async createUser(userData: Partial<User>): Promise<ApiResponse<User>> {
-    return this.request<User>('/users', {
-      method: 'POST',
+    return this.request<User>("/users", {
+      method: "POST",
       body: JSON.stringify(userData),
     });
   }
@@ -15,17 +15,17 @@ export class UsersApi extends BaseApiClient {
 
   async updateUser(
     userId: string,
-    userData: Partial<User>
+    userData: Partial<User>,
   ): Promise<ApiResponse<User>> {
     return this.request<User>(`/users/${userId}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(userData),
     });
   }
 
   async deleteUser(userId: string): Promise<ApiResponse<void>> {
     return this.request<void>(`/users/${userId}`, {
-      method: 'DELETE',
+      method: "DELETE",
     });
   }
 
@@ -34,28 +34,28 @@ export class UsersApi extends BaseApiClient {
     page?: number;
   }): Promise<ApiResponse<User[]>> {
     const queryParams = new URLSearchParams();
-    if (params?.limit) queryParams.append('limit', params.limit.toString());
-    if (params?.page) queryParams.append('page', params.page.toString());
+    if (params?.limit) queryParams.append("limit", params.limit.toString());
+    if (params?.page) queryParams.append("page", params.page.toString());
 
     return this.request<User[]>(`/users?${queryParams.toString()}`);
   }
 
   async blockUser(
     userId: string,
-    blockedUids: string[]
+    blockedUids: string[],
   ): Promise<ApiResponse<void>> {
     return this.request<void>(`/users/${userId}/blockedusers`, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify({ blockedUids }),
     });
   }
 
   async unblockUser(
     userId: string,
-    blockedUids: string[]
+    blockedUids: string[],
   ): Promise<ApiResponse<void>> {
     return this.request<void>(`/users/${userId}/blockedusers`, {
-      method: 'DELETE',
+      method: "DELETE",
       body: JSON.stringify({ blockedUids }),
     });
   }

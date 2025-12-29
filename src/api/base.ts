@@ -3,7 +3,7 @@ import type {
   ApiResponse,
   ErrorResponse,
   CometApiResponse,
-} from '../types/index.js';
+} from "../types/index.js";
 
 export class BaseApiClient {
   protected baseUrl: string;
@@ -16,11 +16,11 @@ export class BaseApiClient {
 
   protected async request<T>(
     endpoint: string,
-    options: RequestInit = {}
+    options: RequestInit = {},
   ): Promise<ApiResponse<T>> {
     const url = `${this.baseUrl}${endpoint}`;
     const headers = {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       apikey: this.apiKey,
       ...options.headers,
     };

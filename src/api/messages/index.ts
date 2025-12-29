@@ -1,17 +1,17 @@
-import { BaseApiClient } from '../base.js';
+import { BaseApiClient } from "../base.js";
 import type {
   Message,
   ApiResponse,
   SendMessageRequest,
-} from '../../types/index.js';
+} from "../../types/index.js";
 
 export class MessagesApi extends BaseApiClient {
   async sendMessage(
     messageData: SendMessageRequest,
-    onBehalfOf?: string
+    onBehalfOf?: string,
   ): Promise<ApiResponse<Message>> {
-    return this.request<Message>('/messages', {
-      method: 'POST',
+    return this.request<Message>("/messages", {
+      method: "POST",
       body: JSON.stringify(messageData),
       headers: onBehalfOf ? { onBehalfOf } : {},
     });
@@ -24,30 +24,30 @@ export class MessagesApi extends BaseApiClient {
     page?: number;
   }): Promise<ApiResponse<Message[]>> {
     const queryParams = new URLSearchParams();
-    if (params.chatId) queryParams.append('chatId', params.chatId);
-    if (params.userId) queryParams.append('userId', params.userId);
-    if (params.limit) queryParams.append('limit', params.limit.toString());
-    if (params.page) queryParams.append('page', params.page.toString());
+    if (params.chatId) queryParams.append("chatId", params.chatId);
+    if (params.userId) queryParams.append("userId", params.userId);
+    if (params.limit) queryParams.append("limit", params.limit.toString());
+    if (params.page) queryParams.append("page", params.page.toString());
 
     return this.request<Message[]>(`/messages?${queryParams.toString()}`);
   }
 
   async deleteMessage(
     messageId: string,
-    permanent: boolean = false
+    permanent: boolean = false,
   ): Promise<ApiResponse<void>> {
     return this.request<void>(`/messages/${messageId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       body: JSON.stringify({ permanent }),
     });
   }
 
   async editMessage(
     messageId: string,
-    text: string
+    text: string,
   ): Promise<ApiResponse<Message>> {
     return this.request<Message>(`/messages/${messageId}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify({ text }),
     });
   }

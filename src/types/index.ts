@@ -42,16 +42,16 @@ export interface Message {
   senderId: string;
   receiverId: string;
   content: string;
-  type: 'text' | 'image' | 'file';
+  type: "text" | "image" | "file";
   createdAt: string;
   updatedAt: string;
 }
 
 export interface SendMessageRequest {
   receiver: string;
-  receiverType: 'user' | 'group';
-  category: 'message' | 'custom';
-  type: 'text' | 'image' | 'file' | 'audio' | 'video';
+  receiverType: "user" | "group";
+  category: "message" | "custom";
+  type: "text" | "image" | "file" | "audio" | "video";
   data: {
     text?: string;
     url?: string;
@@ -79,7 +79,7 @@ export interface Chat {
 export interface Group {
   id: string;
   name: string;
-  type: 'public' | 'private' | 'password';
+  type: "public" | "private" | "password";
   members: string[];
   createdAt: string;
   updatedAt: string;

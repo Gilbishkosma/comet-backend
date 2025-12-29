@@ -1,8 +1,8 @@
-import type { CometConfig } from './types/index.js';
-import { UsersApi } from './api/users/index.js';
-import { MessagesApi } from './api/messages/index.js';
-import { GroupsApi } from './api/groups/index.js';
-import { NotificationsApi } from './api/notifications/index.js';
+import type { CometConfig } from "./types/index.js";
+import { UsersApi } from "./api/users/index.js";
+import { MessagesApi } from "./api/messages/index.js";
+import { GroupsApi } from "./api/groups/index.js";
+import { NotificationsApi } from "./api/notifications/index.js";
 export class CometBackend {
   public users: UsersApi;
   public messages: MessagesApi;
@@ -18,4 +18,4 @@ export class CometBackend {
 }
 
 // Export types
-export * from './types/index.js';
+export * from "./types/index.js";

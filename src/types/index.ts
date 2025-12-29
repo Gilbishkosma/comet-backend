@@ -47,6 +47,27 @@ export interface Message {
   updatedAt: string;
 }
 
+export interface SendMessageRequest {
+  receiver: string;
+  receiverType: 'user' | 'group';
+  category: 'message' | 'custom';
+  type: 'text' | 'image' | 'file' | 'audio' | 'video';
+  data: {
+    text?: string;
+    url?: string;
+    file?: string;
+    metadata?: Record<string, any>;
+    [key: string]: any;
+  };
+  muid?: string;
+  quotedMessageId?: string;
+  tags?: string[];
+  multipleReceivers?: {
+    uids?: string[];
+    guids?: string[];
+  };
+}
+
 export interface Chat {
   id: string;
   participants: string[];

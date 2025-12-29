@@ -108,9 +108,24 @@ comet.users.getUsers(params?: {
 ```typescript
 // Send a message
 comet.messages.sendMessage({
-  receiverId: string;
-  content: string;
-  type: 'text' | 'image' | 'file';
+  receiver: string;
+  receiverType: 'user' | 'group';
+  category: 'message'| 'custom';
+  type: 'text' | 'image' | 'file' | 'audio' | 'video';
+  data: {
+    text?: string;
+    url?: string;
+    file?: string;
+    metadata?: Record<string, any>;
+    [key: string]: any;
+  };
+  muid?: string;
+  quotedMessageId?: string;
+  tags?: string[];
+  multipleReceivers?: {
+    uids?: string[];
+    guids?: string[];
+  };
 });
 
 // Get message history

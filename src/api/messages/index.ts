@@ -1,13 +1,19 @@
 import { BaseApiClient } from '../base.js';
-import type { Message, ApiResponse } from '../../types/index.js';
+import type {
+  Message,
+  ApiResponse,
+  SendMessageRequest,
+} from '../../types/index.js';
 
 export class MessagesApi extends BaseApiClient {
   async sendMessage(
-    messageData: Partial<Message>
+    messageData: SendMessageRequest,
+    onBehalfOf?: string
   ): Promise<ApiResponse<Message>> {
     return this.request<Message>('/messages', {
       method: 'POST',
       body: JSON.stringify(messageData),
+      headers: onBehalfOf ? { onBehalfOf } : {},
     });
   }
 
